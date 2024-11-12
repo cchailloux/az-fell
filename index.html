@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.fullscreen-video-container {
+  position: relative;
+  overflow: hidden;
+  height: 100vh; 
+  width: 100vw;
+}
+
+.fullscreen-video-container video {
+  position: absolute;
+  width: auto;
+  height: auto;
+  min-width: 100%;
+  min-height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  z-index: -1;
+}
+
+.fullscreen-video-text-content {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 5px;
+  font-family: Arial;
+}
+.fullscreen-video-text-content h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #e2e1d6;
+}
+.fullscreen-video-text-content p {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #e9e7d9;
+}
+
+</style>
+</head>
+<body>
+
+<div class="fullscreen-video-container">
+
+<video autoplay muted id="myVideo">
+  <source src="video/veryclosed.mp4" type="video/mp4">
+  Your browser does not support HTML5 video.
+</video>
+
+<div class="fullscreen-video-text-content">
+  <h1>Is <i>A. Z. Fell & Co - Antiquarian and Unusual Books</i> open ?</h1>
+  <p></p>
+  <!-- <button id="myBtn" onclick="myFunction()">Pause</button> -->
+</div>
+</div>
+
+<script>
+// var video = document.getElementById("myVideo");
+const para = document.querySelector("p");
+// ONE LUCK FOR THE DAY
+const luckTodayIn = Math.random() 
+
+// IF LUCK ABOVE X, bad news it's closed
+const isAngelInThatDay = luckTodayIn < 1 // CHOICE of one out of ten to be away
+ 
+console.log('cécile', 'luckTodayIn', luckTodayIn, 'isAngelInThatDay', isAngelInThatDay)
+
+
+if (!isAngelInThatDay) {
+  para.textContent = "Unfortunately I am not in, so the shop will remain closed. "
+  document.querySelector("#myVideo").setAttribute("src","video/S02E03-very-closed.mp4");
+
+} else {
+
+  const currentTimeUTC = new Date()
+  /* 
+   * Warning : Date crafting and shenanigans upcoming. Do not do this at home.
+   * (Why ? I don't want to import any library for this project because, like Good Omens, I like this code vanilla)
+   * We need to know what is London's offset with UTC (-1 if in BST [Brittish Summer Time], 0 otherwise)
+   * and what is our current timezone's offset with UTC
+   * Later on, we will set the theoretical hour of opening / closing time WITH that offset
+   */
+  const currentTimeInLondon = new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'Europe/London', dateStyle: "full", timeStyle: 'long',
+  }).format(currentTimeUTC);
+  // Do not do this at home.
+  const offsetLondonInHours = currentTimeInLondon.slice(-3) === "BST" ? -1 : 0;
+  const offsetLocalInHours = currentTimeUTC.getTimezoneOffset() / 60;
+  const offsetToApply = offsetLocalInHours - offsetLondonInHours;
+  console.log(currentTimeInLondon, offsetLondonInHours, offsetLocalInHours, offsetToApply)
+
+  // const luckTodayOpening = Math.floor(Math.random() * 20); // 0 -> 19
+  const luckTodayOpening = 19; // FAKE VALUE FOR TEST
+  const defaultOpeningTime = [9, 30]
+  // const isBankHoliday = false // TODO - // FAKE VALUE FOR TEST
+
+  const isTuesdayOrSunday = currentTimeUTC.getDay() === 2 || currentTimeUTC.getDay() === 0;
+  const tuesdayOrSundayOpeningTime = [[8, 0], [8, 0], [10, 0], [10, 0], [10, 0], [10, 0]]
+  const otherWeekDayOpeningTime = [[8, 0], [8, 0], [10, 0], [10, 0], [10, 0], [10, 0], [13, 0]]
+
+  const withYourLuckOpeningTime = isTuesdayOrSunday ? tuesdayOrSundayOpeningTime[luckTodayOpening] : otherWeekDayOpeningTime[luckTodayOpening]
+  const openingTimeTheory = withYourLuckOpeningTime ?? defaultOpeningTime
+  console.log('cecile', 'luckTodayOpening', luckTodayOpening, 'withYourLuckOpeningTime', withYourLuckOpeningTime, 'openingTimeTheory', openingTimeTheory)
+  console.log('cécile', 'currentTime', currentTimeUTC, "day", currentTimeUTC.getDay(), "minutes", currentTimeUTC.getMinutes())
+
+  const dateComparison = new Date(currentTimeUTC);
+  const dateComparisonTEMP = new Date(currentTimeUTC);
+  dateComparison.setHours(openingTimeTheory[0],openingTimeTheory[1],0);
+  dateComparisonTEMP.setHours(openingTimeTheory[0] + offsetToApply,openingTimeTheory[1],0);
+  console.log('cécile', 'dateComparison', dateComparison, 'dateComparisonTEMP', dateComparisonTEMP, 'currentTime', currentTimeUTC)
+
+  const isAlreadyOpened = currentTimeUTC >= dateComparison;
+  console.log('cécile', 'dateComparison', dateComparison, dateComparisonTEMP, 'currentTime', currentTimeUTC, 'isAlreadyOpened', isAlreadyOpened)
+
+
+  if(!isAlreadyOpened) {
+    para.textContent = quotesClosed[(Math.random() * quotesClosed.length) | 0]
+    document.querySelector("#myVideo").setAttribute("src","video/S01E03-closed.mp4");
+  } else {
+
+  // const luckTodayOpening = Math.floor(Math.random() * 20); // 0 -> 19
+  const luckTodayClosing = 19; // FAKE VALUE FOR TEST
+    const defaultClosingTime = [23, 30] // FAKE VALUE FOR TEST
+  // const defaultClosingTime = [15, 30]
+  const closingTimes = [[20, 0], [21, 0], [12, 0], [13, 0], [14, 0], [15, 0]] // 1 chance of 8PM, 1 of 9PM, 4 of "earlier" aka 12, 13, 14, 15
+  const closingTimeTheory = closingTimes[luckTodayClosing] ?? defaultClosingTime;
+  dateComparison.setHours(closingTimeTheory[0],closingTimeTheory[1],0);
+  const isNotYetClosed = currentTimeUTC < dateComparison;
+  console.log('cécile', 'dateComparison', dateComparison, 'closingTimeTheory', closingTimeTheory, 'isNotYetClosed', isNotYetClosed)
+
+  const quotesOpen = [
+    "The shop is opened - can I hear a Wahoo ?",
+    "The bookshop is currently open. We have a wide range of books - including novels from the brandy smuggler, master spy, great brain behind the 1810 Clerkenwell Diamond Robbery.",
+    "The bookshop is currently open. We have a wide range of books - Mrs. Beeton's Book of Household Management for example, if you are looking for a Pornography.",
+    "The bookshop is currently open. We have a wide range of books - now including the entire collection of William's adventure from the late Richmal Crompton.",
+    "The bookshop is currently open. We have a wide range of excellent novels, but also some Jeffrey Archer's books I'm afraid.",
+    "The bookshop is currently open. We have a wide range of books. No, we do not have The Nice and Accurrate Prophecies of Agnes Nutter. There are no copies of her book available - no, I can't name my price, I don't have it. Well, there really is no need for that kind of language.",
+    "The bookshop is currently open. We have a very wide range of books - none are for sale.",
+    "The bookshop is currently open. We have many materials objects - books ! Possibility to discuss secretively if you wish to buy a Pornography and are extremely easily embarassed, as humans often are.",
+  ]
+  // var rand = myArray[(Math.random() * myArray.length) | 0]
+  // My Best Games of Chess, 1924-1937, A. Alekhine
+  // The Great Gatsby / Good Omens first sentences passage ?
+
+  const quotesClosed = [
+    "We are closed - oh, I think perhaps you've got the wrong shop.",
+    "We are closed, we probably don't have what you're looking for and we wouldn't sell it to you if we did.",
+    "I am elsewhere, we are closed.",
+    "Something else needs tending to, we are closed",
+    "I'm not in, we are closed.",
+  ];
+
+    if(!isNotYetClosed) {
+      para.textContent = quotesClosed[(Math.random() * quotesClosed.length) | 0]
+      document.querySelector("#myVideo").setAttribute("src","video/S01E04-closing.mp4");
+    } else {
+      para.textContent = quotesOpen[(Math.random() * quotesOpen.length) | 0]
+      document.querySelector("#myVideo").setAttribute("src","video/S01E02-entering-shop.mp4");
+    }
+  }
+}
+</script>
+
+</body>
+</html>

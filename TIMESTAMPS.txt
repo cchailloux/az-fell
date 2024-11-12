@@ -1,0 +1,58 @@
+TIMESTAMPS
+
+?? S01E01 ??
+Scene: Both are walking towards the bookshop, "after you"
+start: 00:29:21:070
+end: 00:30:240
+
+S01E01
+Scene: Outside shot of the shop, zooming in
+start: 00:48:03:220
+end: 00:48:07:200
+
+---
+
+S01E02
+Scene: Gabriel & beige walk to the shop
+start: 00:00:25.170
+end: 00:00:36.240
+
+?? S01E02 ??
+Scene: Aziraphale telephoning in the shop
+start: 00:23:06:700
+end: 00:23:36:600
+
+S01E02
+Scene: Aziraphale rushing into the shop - night
+start: 00:50:01:130
+end: 00:50:06:060
+
+?? S01E02 ??
+Scene: Aziraphale reading all night Agnes book into the shop
+start: 00:50:40:160
+end: 00:52:08:180
+
+?? S01E02 ??
+Scene: Aziraphale looking at Agnes + calling
+start: 00:53:05:160
+end: 00:53:23:160
+
+---
+
+S01E03
+Scene: Shot of the bookshop door - closed
+start 00:30:18.500
+end 00:30:23.170
+duration 
+
+S01E04
+Scene: Aziraphale closes the bookshop in a hurry
+start 00:48:52.000
+end 00:49:00.000
+duration 00:00:08.000
+
+S02E03
+Scene: Crowley leaves the bookshop - Very Closed
+start 00:39:35.420
+end 00:39:37.100
+duration 

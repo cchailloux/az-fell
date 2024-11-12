@@ -1,0 +1,35 @@
+
+// Generic command
+ffmpeg -ss 00:00:00.000 -to 00:01:00.000 -i YOUR-INPUT-FILE -t 00:01:00.000 -c:v libx264 -c:a aac YOUR-OUTPUT-FILE
+
+// Command with timestamp + duration
+ffmpeg -ss 00:48:52.000 -to 00:49:00.000 -i video/Good-Omens-S01E04.mkv -t 00:00:08.000 -c:v libx264 -c:a aac outputFILENAME2.mp4
+ffmpeg -ss 00:48:52.000 -to 00:49:00.000 -i video/fullepisodes/Good-Omens-S01E04.mkv -c:v libx264 -c:a aac video/TEST.mp4
+
+// Command with timestamp + duration + 6-channel error fixed
+ffmpeg -ss 00:48:52.000 -to 00:49:00.000 -i video/fullepisodes/Good-Omens-S01E04.mkv -c:v libx264 -c:a aac -ac 6 video/TEST.mp4
+ffmpeg -ss 00:48:52.000 -to 00:49:00.000 -i video/fullepisodes/Good-Omens-S01E04.mkv -c:v libx264 -c:a aac -ac 6 video/TEST.mp4
+
+
+
+// Actual commands
+SEASON ONE 
+EPISODE ONE
+ffmpeg -ss 00:48:03.500 -to 00:48:07.500 -i video/fullepisodes/Good-Omens-S01E01.mkv -map_chapters -1 -c:v libx264 -c:a aac -ac 6 video/S01E01-extract.mp4
+
+EPISODE TWO 
+ffmpeg -ss 00:00:25.400 -to 00:00:37.000 -i video/fullepisodes/Good-Omens-S01E02.mkv -map_chapters -1 -c:v libx264 -c:a aac -ac 6 video/S01E02-extract.mp4
+
+ffmpeg -ss 00:50:01.000 -to 00:50:06.150 -i video/fullepisodes/Good-Omens-S01E02.mkv -map_chapters -1 -c:v libx264 -c:a aac -ac 6 video/S01E02-extract.mp4
+
+
+ffmpeg -ss 00:30:18.500 -to 00:30:23.170 -i video/fullepisodes/Good-Omens-S01E03.mkv -map_chapters -1 -c:v libx264 -c:a aac -ac 6 video/TEST.mp4
+ffmpeg -ss 00:48:52.000 -to 00:49:00.000 -i video/fullepisodes/Good-Omens-S01E04.mkv -map_chapters -1 -c:v libx264 -c:a aac -ac 6 video/TEST.mp4
+ffmpeg -ss 00:39:35.420 -to 00:39:37.100 -i video/fullepisodes/Good-Omens-S02E03.mkv -map_chapters -1 -c:v libx264 -c:a aac -ac 6 video/TEST.mp4
+
+
+
+
+
+// Check info about file
+ffprobe video/YOUR-FILE
