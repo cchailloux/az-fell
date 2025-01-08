@@ -62,21 +62,18 @@
 <div class="fullscreen-video-text-content">
   <h1>Is <i>A. Z. Fell & Co - Antiquarian and Unusual Books</i> open ?</h1>
   <p></p>
-  <!-- <button id="myBtn" onclick="myFunction()">Pause</button> -->
 </div>
 </div>
 
 <script>
-// var video = document.getElementById("myVideo");
 const para = document.querySelector("p");
+
 // ONE LUCK FOR THE DAY
 const luckTodayIn = Math.random() 
 
 // IF LUCK ABOVE X, bad news it's closed
 const isAngelInThatDay = luckTodayIn < 1 // CHOICE of one out of ten to be away
  
-console.log('cécile', 'luckTodayIn', luckTodayIn, 'isAngelInThatDay', isAngelInThatDay)
-
 
 if (!isAngelInThatDay) {
   para.textContent = "Unfortunately I am not in, so the shop will remain closed. "
@@ -87,7 +84,7 @@ if (!isAngelInThatDay) {
   const currentTimeUTC = new Date()
   /* 
    * Warning : Date crafting and shenanigans upcoming. Do not do this at home.
-   * (Why ? I don't want to import any library for this project because, like Good Omens, I like this code vanilla)
+   * (Why ? I don't want to import any Date library for this project because, like Good Omens, I like this code vanilla)
    * We need to know what is London's offset with UTC (-1 if in BST [Brittish Summer Time], 0 otherwise)
    * and what is our current timezone's offset with UTC
    * Later on, we will set the theoretical hour of opening / closing time WITH that offset
@@ -95,16 +92,15 @@ if (!isAngelInThatDay) {
   const currentTimeInLondon = new Intl.DateTimeFormat('en-GB', {
     timeZone: 'Europe/London', dateStyle: "full", timeStyle: 'long',
   }).format(currentTimeUTC);
-  // Do not do this at home.
+
   const offsetLondonInHours = currentTimeInLondon.slice(-3) === "BST" ? -1 : 0;
   const offsetLocalInHours = currentTimeUTC.getTimezoneOffset() / 60;
   const offsetToApply = offsetLocalInHours - offsetLondonInHours;
-  console.log(currentTimeInLondon, offsetLondonInHours, offsetLocalInHours, offsetToApply)
 
-  // const luckTodayOpening = Math.floor(Math.random() * 20); // 0 -> 19
-  const luckTodayOpening = 19; // FAKE VALUE FOR TEST
+  // const isBankHoliday = TODO
+  // const luckTodayOpening = 19; // FAKE VALUE FOR TEST
+  const luckTodayOpening = Math.floor(Math.random() * 20); // 0 -> 19
   const defaultOpeningTime = [9, 30]
-  // const isBankHoliday = false // TODO - // FAKE VALUE FOR TEST
 
   const isTuesdayOrSunday = currentTimeUTC.getDay() === 2 || currentTimeUTC.getDay() === 0;
   const tuesdayOrSundayOpeningTime = [[8, 0], [8, 0], [10, 0], [10, 0], [10, 0], [10, 0]]
@@ -112,17 +108,13 @@ if (!isAngelInThatDay) {
 
   const withYourLuckOpeningTime = isTuesdayOrSunday ? tuesdayOrSundayOpeningTime[luckTodayOpening] : otherWeekDayOpeningTime[luckTodayOpening]
   const openingTimeTheory = withYourLuckOpeningTime ?? defaultOpeningTime
-  console.log('cecile', 'luckTodayOpening', luckTodayOpening, 'withYourLuckOpeningTime', withYourLuckOpeningTime, 'openingTimeTheory', openingTimeTheory)
-  console.log('cécile', 'currentTime', currentTimeUTC, "day", currentTimeUTC.getDay(), "minutes", currentTimeUTC.getMinutes())
 
   const dateComparison = new Date(currentTimeUTC);
   const dateComparisonTEMP = new Date(currentTimeUTC);
   dateComparison.setHours(openingTimeTheory[0],openingTimeTheory[1],0);
   dateComparisonTEMP.setHours(openingTimeTheory[0] + offsetToApply,openingTimeTheory[1],0);
-  console.log('cécile', 'dateComparison', dateComparison, 'dateComparisonTEMP', dateComparisonTEMP, 'currentTime', currentTimeUTC)
 
   const isAlreadyOpened = currentTimeUTC >= dateComparison;
-  console.log('cécile', 'dateComparison', dateComparison, dateComparisonTEMP, 'currentTime', currentTimeUTC, 'isAlreadyOpened', isAlreadyOpened)
 
 
   if(!isAlreadyOpened) {
@@ -130,15 +122,16 @@ if (!isAngelInThatDay) {
     document.querySelector("#myVideo").setAttribute("src","video/S01E03-closed.mp4");
   } else {
 
-  // const luckTodayOpening = Math.floor(Math.random() * 20); // 0 -> 19
-  const luckTodayClosing = 19; // FAKE VALUE FOR TEST
-    const defaultClosingTime = [23, 30] // FAKE VALUE FOR TEST
-  // const defaultClosingTime = [15, 30]
-  const closingTimes = [[20, 0], [21, 0], [12, 0], [13, 0], [14, 0], [15, 0]] // 1 chance of 8PM, 1 of 9PM, 4 of "earlier" aka 12, 13, 14, 15
+  // const luckTodayClosing = 19; // FAKE VALUE FOR TEST
+  // const defaultClosingTime = [23, 30] // FAKE VALUE FOR TEST
+  const luckTodayClosing = Math.floor(Math.random() * 20); // 0 -> 19
+  const defaultClosingTime = [15, 30]
+
+  // 1 chance of 8PM, 1 of 9PM, 4 of "earlier" aka 12, 13, 14, 15
+  const closingTimes = [[20, 0], [21, 0], [12, 0], [13, 0], [14, 0], [15, 0]];
   const closingTimeTheory = closingTimes[luckTodayClosing] ?? defaultClosingTime;
   dateComparison.setHours(closingTimeTheory[0],closingTimeTheory[1],0);
   const isNotYetClosed = currentTimeUTC < dateComparison;
-  console.log('cécile', 'dateComparison', dateComparison, 'closingTimeTheory', closingTimeTheory, 'isNotYetClosed', isNotYetClosed)
 
   const quotesOpen = [
     "The shop is opened - can I hear a Wahoo ?",
@@ -150,9 +143,10 @@ if (!isAngelInThatDay) {
     "The bookshop is currently open. We have a very wide range of books - none are for sale.",
     "The bookshop is currently open. We have many materials objects - books ! Possibility to discuss secretively if you wish to buy a Pornography and are extremely easily embarassed, as humans often are.",
   ]
-  // var rand = myArray[(Math.random() * myArray.length) | 0]
-  // My Best Games of Chess, 1924-1937, A. Alekhine
-  // The Great Gatsby / Good Omens first sentences passage ?
+  /* Other ideas
+   * My Best Games of Chess, 1924-1937, A. Alekhine
+   * The Great Gatsby / Good Omens first sentences passage
+   */
 
   const quotesClosed = [
     "We are closed - oh, I think perhaps you've got the wrong shop.",
