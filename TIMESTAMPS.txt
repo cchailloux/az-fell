@@ -1,6 +1,8 @@
 TIMESTAMPS
 
-?? S01E01 ??
+---
+
+S01E01
 Scene: Both are walking towards the bookshop, "after you"
 start: 00:29:21:070
 end: 00:30:240
@@ -17,7 +19,7 @@ Scene: Gabriel & beige walk to the shop
 start: 00:00:25.170
 end: 00:00:36.240
 
-?? S01E02 ??
+S01E02
 Scene: Aziraphale telephoning in the shop
 start: 00:23:06:700
 end: 00:23:36:600
@@ -27,12 +29,12 @@ Scene: Aziraphale rushing into the shop - night
 start: 00:50:01:130
 end: 00:50:06:060
 
-?? S01E02 ??
+S01E02
 Scene: Aziraphale reading all night Agnes book into the shop
 start: 00:50:40:160
 end: 00:52:08:180
 
-?? S01E02 ??
+S01E02
 Scene: Aziraphale looking at Agnes + calling
 start: 00:53:05:160
 end: 00:53:23:160

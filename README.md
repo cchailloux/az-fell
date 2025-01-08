@@ -9,11 +9,11 @@ Make a website for the A. Z. Fell bookshop in Soho, London indicating whether th
 - translate English words (occasionally, perhaps, etc.) into probability
 - with it, determine for today if the shop is a) open at all b) opening at what time c) closing at what time
 - resize video when window changes
+- tailor the messages
 
 ### TODO
 
 - handle bank holidays
-- tailor the messages
 - decide the luck server-side so everybody has the same experience ?
 - transform in a 2-step process : display still photo with text and button, if user clicks then play video / message
 
@@ -25,7 +25,7 @@ Make a website for the A. Z. Fell bookshop in Soho, London indicating whether th
 
 ### Videos
 
-All the videos are clips from the Amazon Original & BBC Studios tv show "Good Omens". I do not own those videos.
+All the videos are clips from the TV show "Good Omens" owned by the Amazon Original & BBC Studios. I do not own those videos.
 
 ### Text
 
@@ -42,7 +42,8 @@ Bank holidays will be treated in the usual fashion, with early closing on Wednes
 
 ## Can I copy some ?
 
-Sure ! This code is under the licence [TO_DEFINE]
+Sure ! This work is under the licence under a [Creative Commons Attribution 4.0 International License][cc-by].
+Shield: [![CC BY 4.0][cc-by-shield]][cc-by]
 
 Some articles that are interesting:
 
