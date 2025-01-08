@@ -7,7 +7,7 @@ Make a website for the A. Z. Fell bookshop in Soho, London indicating whether th
 ### DONE
 
 - translate English words (occasionally, perhaps, etc.) into probability
-- with it, determine for today if the shop is a) open at all b) opening at what time c) closing at what tie
+- with it, determine for today if the shop is a) open at all b) opening at what time c) closing at what time
 - resize video when window changes
 
 ### TODO
@@ -15,6 +15,7 @@ Make a website for the A. Z. Fell bookshop in Soho, London indicating whether th
 - handle bank holidays
 - tailor the messages
 - decide the luck server-side so everybody has the same experience ?
+- transform in a 2-step process : display still photo with text and button, if user clicks then play video / message
 
 ### LATER
 
@@ -24,11 +25,12 @@ Make a website for the A. Z. Fell bookshop in Soho, London indicating whether th
 
 ### Videos
 
-All the videos are clips from the Amazon original & BBC tv show "Good Omens". I do not own those videos.
+All the videos are clips from the Amazon Original & BBC Studios tv show "Good Omens". I do not own those videos.
 
 ### Text
 
 In the TV show, the bookshop displays a sign that reads as follow:
+
 "I open the shop on most weekdays about 9:30 or perhaps 10am.
 While occasionally I open the shop as early as 8, I have been known not to open until 1, except on Tuesday.
 I tend to close about 3:30pm, or earlier if something needs tending to.
@@ -40,11 +42,11 @@ Bank holidays will be treated in the usual fashion, with early closing on Wednes
 
 ## Can I copy some ?
 
-Sure !
-HTML code:
+Sure ! This code is under the licence [TO_DEFINE]
 
-- https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_fullscreen_video
-- https://dev.to/peboy/how-to-create-a-responsive-video-background-in-html-and-css-1bh6
-  Video transformation:
-- https://ffmpeg.org/
-- https://mjimani.medium.com/ffmpeg-commands-for-beginners-720351ce7fb
+Some articles that are interesting:
+
+- HTML: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_fullscreen_video
+- HTML: https://dev.to/peboy/how-to-create-a-responsive-video-background-in-html-and-css-1bh6
+- Video: https://ffmpeg.org/
+- Video: https://mjimani.medium.com/ffmpeg-commands-for-beginners-720351ce7fb
