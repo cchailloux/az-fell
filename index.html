@@ -71,6 +71,29 @@
 </div>
 
 <script>
+  const quotesOpen = [
+    "The shop is opened - can I hear a Wahoo ?",
+    "The bookshop is currently open. We have a wide range of books - including novels from the brandy smuggler, master spy, great brain behind the 1810 Clerkenwell Diamond Robbery.",
+    "The bookshop is currently open. We have a wide range of books - Mrs. Beeton's Book of Household Management for example, if you are looking for a Pornography.",
+    "The bookshop is currently open. We have a wide range of books - now including the entire collection of William's adventure from the late Richmal Crompton.",
+    "The bookshop is currently open. We have a wide range of excellent novels, but also some Jeffrey Archer's books I'm afraid.",
+    "The bookshop is currently open. We have a wide range of books. No, we do not have The Nice and Accurrate Prophecies of Agnes Nutter. There are no copies of her book available - no, I can't name my price, I don't have it. Well, there really is no need for that kind of language.",
+    "The bookshop is currently open. We have a very wide range of books - none are for sale.",
+    "The bookshop is currently open. We have many materials objects - books ! Possibility to discuss secretively if you wish to buy a Pornography and are extremely easily embarassed, as humans often are.",
+  ]
+  /* Other ideas
+   * My Best Games of Chess, 1924-1937, A. Alekhine
+   * The Great Gatsby / Good Omens first sentences passage
+   */
+
+  const quotesClosed = [
+    "We are closed - oh, I think perhaps you've got the wrong shop.",
+    "We are closed, we probably don't have what you're looking for and we wouldn't sell it to you if we did.",
+    "I am elsewhere, we are closed.",
+    "Something else needs tending to, we are closed",
+    "I'm not in, we are closed.",
+  ];
+
 const para = document.querySelector("p");
 
 // ONE LUCK FOR THE DAY
@@ -99,18 +122,19 @@ if (!isAngelInThatDay) {
     timeZone: 'Europe/London', dateStyle: "full", timeStyle: 'long',
   }).format(currentTimeUTC);
 
+  // If the string ends with "BST", we know to use the offset
   const offsetLondonInHours = currentTimeInLondon.slice(-3) === "BST" ? -1 : 0;
   const offsetLocalInHours = currentTimeUTC.getTimezoneOffset() / 60;
   const offsetToApply = offsetLocalInHours - offsetLondonInHours;
 
   // const isBankHoliday = TODO
   // const luckTodayOpening = 19; // FAKE VALUE FOR TEST
-  const luckTodayOpening = Math.floor(Math.random() * 20); // 0 -> 19
+  const luckTodayOpening = Math.floor(Math.random() * 20); // Luck is between 0 -> 19
   const defaultOpeningTime = [9, 30]
 
-  const isTuesdayOrSunday = currentTimeUTC.getDay() === 2 || currentTimeUTC.getDay() === 0;
   const tuesdayOrSundayOpeningTime = [[8, 0], [8, 0], [10, 0], [10, 0], [10, 0], [10, 0]]
   const otherWeekDayOpeningTime = [[8, 0], [8, 0], [10, 0], [10, 0], [10, 0], [10, 0], [13, 0]]
+  const isTuesdayOrSunday = currentTimeUTC.getDay() === 2 || currentTimeUTC.getDay() === 0;
 
   const withYourLuckOpeningTime = isTuesdayOrSunday ? tuesdayOrSundayOpeningTime[luckTodayOpening] : otherWeekDayOpeningTime[luckTodayOpening]
   const openingTimeTheory = withYourLuckOpeningTime ?? defaultOpeningTime
@@ -138,29 +162,6 @@ if (!isAngelInThatDay) {
   const closingTimeTheory = closingTimes[luckTodayClosing] ?? defaultClosingTime;
   dateComparison.setHours(closingTimeTheory[0],closingTimeTheory[1],0);
   const isNotYetClosed = currentTimeUTC < dateComparison;
-
-  const quotesOpen = [
-    "The shop is opened - can I hear a Wahoo ?",
-    "The bookshop is currently open. We have a wide range of books - including novels from the brandy smuggler, master spy, great brain behind the 1810 Clerkenwell Diamond Robbery.",
-    "The bookshop is currently open. We have a wide range of books - Mrs. Beeton's Book of Household Management for example, if you are looking for a Pornography.",
-    "The bookshop is currently open. We have a wide range of books - now including the entire collection of William's adventure from the late Richmal Crompton.",
-    "The bookshop is currently open. We have a wide range of excellent novels, but also some Jeffrey Archer's books I'm afraid.",
-    "The bookshop is currently open. We have a wide range of books. No, we do not have The Nice and Accurrate Prophecies of Agnes Nutter. There are no copies of her book available - no, I can't name my price, I don't have it. Well, there really is no need for that kind of language.",
-    "The bookshop is currently open. We have a very wide range of books - none are for sale.",
-    "The bookshop is currently open. We have many materials objects - books ! Possibility to discuss secretively if you wish to buy a Pornography and are extremely easily embarassed, as humans often are.",
-  ]
-  /* Other ideas
-   * My Best Games of Chess, 1924-1937, A. Alekhine
-   * The Great Gatsby / Good Omens first sentences passage
-   */
-
-  const quotesClosed = [
-    "We are closed - oh, I think perhaps you've got the wrong shop.",
-    "We are closed, we probably don't have what you're looking for and we wouldn't sell it to you if we did.",
-    "I am elsewhere, we are closed.",
-    "Something else needs tending to, we are closed",
-    "I'm not in, we are closed.",
-  ];
 
     if(!isNotYetClosed) {
       para.textContent = quotesClosed[(Math.random() * quotesClosed.length) | 0]
