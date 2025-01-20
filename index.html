@@ -55,7 +55,7 @@
 <div class="fullscreen-video-container">
 
 <video autoplay muted id="myVideo">
-  <source src="video/veryclosed.mp4" type="video/mp4">
+  <source src="video/S02E03-very-closed.mp4" type="video/mp4">
   Your browser does not support HTML5 video.
 </video>
 
@@ -72,7 +72,8 @@ const para = document.querySelector("p");
 const luckTodayIn = Math.random() 
 
 // IF LUCK ABOVE X, bad news it's closed
-const isAngelInThatDay = luckTodayIn < 1 // CHOICE of one out of ten to be away
+// const isAngelInThatDay = luckTodayIn < 1 // FAKE VALUE FOR TEST
+const isAngelInThatDay = luckTodayIn < 0.9 // 1 chance out of 10 to just be away
  
 
 if (!isAngelInThatDay) {

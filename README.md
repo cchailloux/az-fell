@@ -1,6 +1,6 @@
 # The Project
 
-Make a website for the A. Z. Fell bookshop in Soho, London indicating whether the shop is currently opened or not (most likely not).
+Make a website for the A. Z. Fell & Co bookshop in Soho, London indicating whether the shop is currently opened or not (most likely not).
 
 ## Project advancement
 
